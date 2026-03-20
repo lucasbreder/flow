@@ -21,6 +21,8 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  cors: ['https://flow.sudu.dev'],
+  csrf: ['https://flow.sudu.dev'],
   admin: {
     user: Users.slug,
     importMap: {
