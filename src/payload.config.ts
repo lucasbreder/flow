@@ -12,10 +12,10 @@ import { Companies } from './collections/Companies'
 import { Contacts } from './collections/Contacts'
 import { SalesPipelines } from './collections/SalesPipelines'
 import { Opportunities } from './collections/Opportunities'
-import { Projects } from './collections/Projects'
 import { Tasks } from './collections/Tasks'
 import { Activities } from './collections/Activities'
 import { Notes } from './collections/Notes'
+import { Projects } from './collections/Projects'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

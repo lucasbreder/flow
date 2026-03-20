@@ -289,14 +289,14 @@ export interface Opportunity {
   createdAt: string;
 }
 /**
- * Gerencia os projetos da equipe.
+ * Gerencia os projetos da equipe e dos clientes.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
   id: number;
-  name: string;
+  title: string;
   description?: {
     root: {
       type: string;
@@ -312,11 +312,29 @@ export interface Project {
     };
     [k: string]: unknown;
   } | null;
-  status: 'active' | 'on-hold' | 'completed' | 'archived';
+  status: 'planning' | 'active' | 'on-hold' | 'completed' | 'cancelled';
   startDate?: string | null;
-  endDate?: string | null;
-  owner?: (number | null) | User;
-  members?: (number | User)[] | null;
+  dueDate?: string | null;
+  manager?: (number | null) | User;
+  team?: (number | User)[] | null;
+  budget?: number | null;
+  company?: (number | null) | Company;
+  opportunity?: (number | null) | Opportunity;
+  notes?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -641,13 +659,17 @@ export interface OpportunitiesSelect<T extends boolean = true> {
  * via the `definition` "projects_select".
  */
 export interface ProjectsSelect<T extends boolean = true> {
-  name?: T;
+  title?: T;
   description?: T;
   status?: T;
   startDate?: T;
-  endDate?: T;
-  owner?: T;
-  members?: T;
+  dueDate?: T;
+  manager?: T;
+  team?: T;
+  budget?: T;
+  company?: T;
+  opportunity?: T;
+  notes?: T;
   updatedAt?: T;
   createdAt?: T;
 }
